@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080817">
+  <title>სიურპრიზი შენთვის ✨</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script src="game.js" defer></script>
+  <script src="game2.js" defer></script>
+  <script src="game3.js" defer></script>
+  <script src="music.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+    <button id="musicToggle" class="music-toggle"
+    type="button" aria-pressed="true">
+    🔊 მუსიკა
+  </button>
+  <div class="background-glow"></div>
+  <div id="flash"></div>
+  <div id="confetti"></div>
+
+  <!-- საწყისი ეკრანი -->
+  <section id="intro" class="screen">
+    <div class="eyebrow">✦ SPECIAL BIRTHDAY GAME ✦</div>
+    <div class="big-emoji">🎁</div>
+    <h1>პატარა სიურპრიზი<br>შენთვის</h1>
+    <p>მზად ხარ პატარა გამოწვევისთვის?<br>ვნახოთ, რამდენად სწრაფი ხარ! 💜</p>
+    <button id="startButton" class="glow-button">თამაშის დაწყება ✨</button>
+  </section>
+
+  <!-- თამაში 1 -->
+  <section id="gameScreen" class="screen hidden">
+    <div class="game-heading">
+      <div class="eyebrow">LEVEL 01</div>
+      <h2>იპოვე რიცხვები თანმიმდევრობით</h2>
+      <p>დააჭირე 1-ს, შემდეგ 2-ს და ასე გააგრძელე 15-მდე.</p>
+    </div>
+
+    <div class="game-hud">
+      <div>
+        <span class="hud-label">შეგროვებული</span>
+        <strong><span id="caught">0</span> / 15</strong>
+      </div>
+      <div>
+        <span class="hud-label">შემდეგი რიცხვი</span>
+        <strong id="nextNumber">1</strong>
+      </div>
+    </div>
+
+    <div class="progress-track">
+      <div id="progress" class="progress-fill"></div>
+    </div>
+    <div id="numberField" aria-label="რიცხვების სათამაშო სივრცე"></div>
+  </section>
+
+  <!-- თამაში 1-ის დასრულება -->
+  <section id="celebration" class="screen hidden">
+    <div class="eyebrow">✦ LEVEL COMPLETED ✦</div>
+    <div class="big-emoji">🎉</div>
+    <h1>შესანიშნავია!</h1>
+    <p>პირველი გამოწვევა წარმატებით შეასრულე.</p>
+    <div class="result-card">
+      <span>შენი ქულა</span>
+      <strong id="finalScore">15 / 15</strong>
+    </div>
+    <button id="nextGameButton" class="glow-button">შემდეგი თამაში 🚀</button>
+  </section>
+
+  <!-- თამაში 2 -->
+  <section id="game2Screen" class="screen hidden">
+    <div id="game2HUD">
+      <div class="game2-score-label">საერთო ქულა</div>
+      <div class="game2-score-value"><span id="game2Score">15</span> / 30</div>
+      <div class="game2-instructions">
+        გამოიყენე მარცხენა/მარჯვენა ისრები ან შეეხე ეკრანის მხარეებს
+      </div>
+    </div>
+
+    <div id="game2World"></div>
+
+    <div id="game2StartOverlay" class="game-overlay">
+      <div class="big-emoji">🌌</div>
+      <h2>მაღლა, მაღლა!</h2>
+      <p>ახტი პლატფორმებზე და შეაგროვე ქულები.<br>მიზანი: 30 ქულა!</p>
+      <button id="startJumpButton" class="glow-button">თამაშის დაწყება 🚀</button>
+    </div>
+
+    <div id="game2EndOverlay" class="game-overlay hidden">
+      <div id="game2EndEmoji" class="big-emoji">🎉</div>
+      <h2 id="game2EndTitle">თამაში დასრულდა!</h2>
+      <p id="game2EndMessage"></p>
+      <button id="game2ContinueButton" class="glow-button">თავიდან თამაში ↻</button>
+    </div>
+  </section>
+
+  <!-- თამაში 3: გულები -->
+  <section id="game3Screen" class="screen hidden">
+    <div class="eyebrow">LEVEL 03 · HEART RUSH</div>
+    <h1 class="game3-title">დაიჭირე გული! 💗</h1>
+    <p class="game3-description">
+      დააჭირე წითელ გულს ❤️ და მოერიდე გატეხილ გულს 💔.
+      <br>მიაღწიე 9 ქულას!
+    </p>
+
+    <div class="game3-hud">
+      <span>შენი ქულა</span>
+      <strong><span id="game3Score">0</span> / 9</strong>
+    </div>
+
+    <div id="heartStage" aria-label="გულების სათამაშო სივრცე">
+      <div id="heartMessage">მზად ხარ? 💖</div>
+      <button id="heartTarget" class="heart-target hidden" type="button"
+        aria-label="დააჭირე გულს"></button>
+    </div>
+
+    <div id="game3StartOverlay" class="game-overlay">
+      <div class="big-emoji">💗</div>
+      <h2>სწრაფი რეაქცია!</h2>
+      <p>
+        წითელ გულზე დაჭერა მოგცემს ერთ ქულას.
+        <br>გატეხილ გულზე დაჭერა ერთ ქულას დაგაკლებს.
+        <br>რაც მეტი ქულა გექნება, მით უფრო სწრაფი გახდება თამაში!
+      </p>
+      <button id="startHeartButton" class="glow-button">დავიწყოთ! 💕</button>
+    </div>
+
+    <div id="game3EndOverlay" class="game-overlay hidden">
+      <div id="game3EndEmoji" class="big-emoji">💖</div>
+      <h2 id="game3EndTitle">შენ ეს შეძელი!</h2>
+      <p id="game3EndMessage"></p>
+      <button id="game3FinishButton" class="glow-button">გავაგრძელოთ ✨</button>
+    </div>
+  </section>
+
+  <!-- საბოლოო დაბადების დღის მილოცვა -->
+  <section id="finalScreen" class="screen hidden">
+    <div class="eyebrow">✦ HAPPY BIRTHDAY ✦</div>
+    <div class="big-emoji">🎂💖🎉</div>
+    <h1>დეიდაა გილოცავ დაბადების დღეს! 💐</h1>
+    <p>
+      
+      <br>გისურვებ უსაზღვრო ბედნიერებას, სიყვარულს,
+      ჯანმრთელობას და უამრავ ლამაზ დღეს!
+      <br><br>ძალიან მიყვარხარ! 💗
+    </p>
+    <button id="replayButton" class="glow-button">თავიდან თამაში ↻</button>
+  </section>
+</body>
+</html>
